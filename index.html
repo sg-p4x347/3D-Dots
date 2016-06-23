@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>3D Dots</title>   
+        <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+        <script type="text/javascript" src="3D Dots.js"></script>
+        <script id="shader-fs" type="x-shader/x-fragment">
+            precision mediump float;
+
+            varying vec4 vColor;
+
+            void main(void) {
+            gl_FragColor = vColor;
+            }
+        </script>
+        <script id="shader-vs" type="x-shader/x-vertex">
+            attribute vec3 aVertexPosition;
+            attribute vec4 aVertexColor;
+
+            uniform mat4 uMVMatrix;
+            uniform mat4 uPMatrix;
+
+            varying vec4 vColor;
+
+            void main(void) {
+            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vColor = aVertexColor;
+            }
+        </script>  
+		<link rel="icon" href="Icon.png" type="image/ico" />
+		<link rel="stylesheet" href = "/Bearded Style.css" type="text/css" />		
+    </head>
+<body style = "text-align: center">
+	<div class = 'title'>
+		<h1 class = 'title'>3D Dots</h1>
+		<h2 class = 'title'>connect the dots to make squares!</h2>
+	</div>
+	<div class = 'menu'>
+		<ul class = 'menu'>
+			<li class = 'menu'>
+				<a class = 'menu' href="/" title='The root of the follicles'>Home</a>
+			</li>
+			<li class = 'menu'>
+					<a class = 'menu' href="/games" title='Fun things to get addicted to'>Games</a>
+			</li>
+			<li class = 'menu'>
+				<a class = 'menu' href="/pictures" title="Our images">Pictures</a>
+			</li>
+			<li class = 'menu'>
+				<a class = 'menu' href="/maintenance" title="Don't really know what this is">Maintenance</a>
+			</li>
+			<li class = 'menu'>
+				<a class = 'menu' href="/bouncyballs" title="Bouncing balls">Bouncy Balls</a>
+			</li>		
+		</ul>
+	</div>
+	<div id = "main" style="position: relative; width: 720px; height: 720px; z-index: 1; background-image: url('3Ddots Cover.png');";>
+        <canvas id="canvas" width="720" height="720"
+                style="position: absolute; left: 0; top: 0;  z-index: 2; "></canvas>
+        <canvas id="HUD" width="720" height="720"
+                style="position: absolute; left:0; top:0; z-index: 3;"></canvas>
+    </div>
+</body>
+</html>
